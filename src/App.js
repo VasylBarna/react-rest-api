@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+// import { ToastContainer } from 'react-toastify';
+// import PokemonForm from './components/PokemonForm';
+// import PokemonInfo from './components/PokemonInfo';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  state = {
+    pokemon: null,
+  };
+
+  async componentDidMount() {
+    fetch('https://pokeapi.co/api/v2/pokemon/ditto')
+      .then(res => res.json())
+      .then(pokemon => this.setState({ pokemon }));
+  }
+  render() {
+    return (
+      <div style={{ maxWidth: 1170, margin: '0 auto', padding: 20 }}>
+        {this.state.pokemon && (
+          <div>ТУт будет покемон после фетча і когда в стейт запишем</div>
+        )}
+      </div>
+    );
+  }
 }
-
 export default App;
